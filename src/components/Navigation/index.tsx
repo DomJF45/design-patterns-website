@@ -17,6 +17,9 @@ import {
   PopoverContent,
   Popover,
   PopoverTrigger,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
 } from "@chakra-ui/react";
 import { FiHome, FiCompass, FiMenu } from "react-icons/fi";
 import { TbBuildingFactory, TbBuildingFactory2 } from "react-icons/tb";
@@ -25,6 +28,7 @@ import { GiFactoryArm, GiPodiumWinner } from "react-icons/gi";
 import { IconType } from "react-icons";
 import { RiSketching } from "react-icons/ri";
 import { ReactText } from "react";
+import { useParams } from "react-router-dom";
 
 interface LinkItemProps {
   name: string;
@@ -77,8 +81,24 @@ const LinkItems: Array<LinkItemProps> = [
   -------------------------------------
 */
 
+function NavBreadCrumb({ id }: { id: string }) {
+  return (
+    <Box my={4}>
+      <Breadcrumb separator={"/"}>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink href={`/${id}`}>{id}</BreadcrumbLink>
+        </BreadcrumbItem>
+      </Breadcrumb>
+    </Box>
+  );
+}
+
 export default function SimpleSidebar({ children }: { children: ReactNode }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { id } = useParams();
   return (
     <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
       <SidebarContent
@@ -101,6 +121,7 @@ export default function SimpleSidebar({ children }: { children: ReactNode }) {
       {/* mobilenav */}
       <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
+        <NavBreadCrumb id={id ? id : ""} />
         {children}
       </Box>
     </Box>
