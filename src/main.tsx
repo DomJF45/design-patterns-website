@@ -6,6 +6,7 @@ import SimpleSidebar from "./components/Navigation/index.tsx";
 import HomePage from "./pages/Home/index.tsx";
 import Layout from "./components/Layout.tsx";
 import { PageNotFound } from "./components/PageNotFound.tsx";
+import FactoryPage from "./pages/Factory/index.tsx";
 
 const RouteLayout = () => {
   return (
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+      },
+      {
+        path: "/factory",
+        element: <FactoryPage />,
       },
     ],
     errorElement: <PageNotFound />,

@@ -28,7 +28,7 @@ import { GiFactoryArm, GiPodiumWinner } from "react-icons/gi";
 import { IconType } from "react-icons";
 import { RiSketching } from "react-icons/ri";
 import { ReactText } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 
 interface LinkItemProps {
   name: string;
@@ -98,7 +98,8 @@ function NavBreadCrumb({ id }: { id: string }) {
 
 export default function SimpleSidebar({ children }: { children: ReactNode }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { id } = useParams();
+  const { page } = useParams();
+  const location = useLocation();
   return (
     <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
       <SidebarContent
@@ -121,7 +122,13 @@ export default function SimpleSidebar({ children }: { children: ReactNode }) {
       {/* mobilenav */}
       <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
-        <NavBreadCrumb id={id ? id : ""} />
+        <NavBreadCrumb
+          id={
+            location.pathname
+              ? location.pathname.slice(1, location.pathname.length)
+              : ""
+          }
+        />
         {children}
       </Box>
     </Box>
@@ -284,8 +291,8 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
 
       <Text fontSize="2xl" ml="8" fontWeight="bold">
         Design{" "}
-        <Text as={"span"} fontSize={"xs"} fontFamily={"mono"}>
-          {"// patterns //"}
+        <Text as={"span"} color={"green.500"}>
+          {"Patterns"}
         </Text>
       </Text>
     </Flex>
