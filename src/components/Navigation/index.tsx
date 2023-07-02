@@ -28,7 +28,7 @@ import { GiFactoryArm, GiPodiumWinner } from "react-icons/gi";
 import { IconType } from "react-icons";
 import { RiSketching } from "react-icons/ri";
 import { ReactText } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 interface LinkItemProps {
   name: string;
@@ -98,7 +98,6 @@ function NavBreadCrumb({ id }: { id: string }) {
 
 export default function SimpleSidebar({ children }: { children: ReactNode }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { page } = useParams();
   const location = useLocation();
   return (
     <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>

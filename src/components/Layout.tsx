@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 
 interface iLayoutProps {
   children: React.ReactNode;
@@ -6,9 +6,14 @@ interface iLayoutProps {
 
 const Layout: React.FC<iLayoutProps> = ({ children }) => {
   return (
-    <Box width={"100%"} height={"100%"}>
+    <Flex
+      width={"100%"}
+      height={"100%"}
+      direction={"column"}
+      justifyContent={"center"}
+    >
       {children}
-    </Box>
+    </Flex>
   );
 };
 

@@ -10,11 +10,11 @@ import FactoryPage from "./pages/Factory/index.tsx";
 
 const RouteLayout = () => {
   return (
-    <Layout>
-      <SimpleSidebar>
+    <SimpleSidebar>
+      <Layout>
         <Outlet />
-      </SimpleSidebar>
-    </Layout>
+      </Layout>
+    </SimpleSidebar>
   );
 };
 
