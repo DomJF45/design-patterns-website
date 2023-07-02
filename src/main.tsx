@@ -7,6 +7,10 @@ import HomePage from "./pages/Home/index.tsx";
 import Layout from "./components/Layout.tsx";
 import { PageNotFound } from "./components/PageNotFound.tsx";
 import FactoryPage from "./pages/Factory/index.tsx";
+import AbstractFactoryPage from "./pages/AbstractFactory/index.tsx";
+import BuilderPage from "./pages/Builder/index.tsx";
+import PrototypePage from "./pages/Prototype/index.tsx";
+import SingletonPage from "./pages/Singleton/index.tsx";
 
 const RouteLayout = () => {
   return (
@@ -30,6 +34,22 @@ const router = createBrowserRouter([
       {
         path: "/factory",
         element: <FactoryPage />,
+      },
+      {
+        path: "/abstract-factory",
+        element: <AbstractFactoryPage />,
+      },
+      {
+        path: "/builder",
+        element: <BuilderPage />,
+      },
+      {
+        path: "/prototype",
+        element: <PrototypePage />,
+      },
+      {
+        path: "/singleton",
+        element: <SingletonPage />,
       },
     ],
     errorElement: <PageNotFound />,
