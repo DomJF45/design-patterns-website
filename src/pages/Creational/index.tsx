@@ -1,9 +1,11 @@
-import { Flex, Heading, Image, Text } from "@chakra-ui/react";
+import { Text, Flex, Heading } from "@chakra-ui/react";
 import Post from "../../components/Post";
+import PatternCards from "./PatternCards";
 
-const BuilderPage = () => {
+const CreationalPage = () => {
   return (
     <Post>
+      {/* wrap in post component */}
       <Flex
         direction={"column"}
         width={"100%"}
@@ -11,17 +13,15 @@ const BuilderPage = () => {
         gap={8}
       >
         <Heading textAlign={"start"} color={"green.400"}>
-          Builder{" "}
+          Creational{" "}
           <Text as={"span"} color={"black"}>
-            Pattern
+            Patterns
           </Text>
         </Heading>
-        <Image src="/factory-uml.png" width="700px" alignSelf={"center"} />
-        <Heading>About</Heading>
-        <Text>coming soon...</Text>
+        <PatternCards />
       </Flex>
     </Post>
   );
 };
 
-export default BuilderPage;
+export default CreationalPage;

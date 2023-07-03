@@ -7,7 +7,6 @@ import {
   Image,
   Text,
 } from "@chakra-ui/react";
-import PatternGrid from "./PatternCard";
 import { FiChevronRight } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -23,9 +22,9 @@ const HomePage = () => {
         maxWidth={"1200px"}
         height={"100%"}
       >
-        <Heading textAlign={"center"} size={"2xl"}>
+        <Heading textAlign={"center"} size={"2xl"} color={"green.500"}>
           Design{" "}
-          <Text as={"span"} color={"green.500"}>
+          <Text as={"span"} color={"black"}>
             Patterns!
           </Text>
         </Heading>
@@ -37,7 +36,7 @@ const HomePage = () => {
           userSelect={"none"}
         />
         <Box
-          width="60%"
+          width={{ base: "95%", md: "60%" }}
           maxWidth={"1200px"}
           alignSelf={"center"}
           backgroundColor={"green.50"}
@@ -51,10 +50,8 @@ const HomePage = () => {
             focus on creational patterns!
           </Text>
         </Box>
-        <Box my={0}>
-          <PatternGrid />
-        </Box>
         <Button
+          my={8}
           width={"200px"}
           alignSelf={"center"}
           colorScheme="green"
@@ -64,7 +61,7 @@ const HomePage = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           transition={"0.1s linear"}
-          onClick={() => navigate("/factory")}
+          onClick={() => navigate("/creational")}
         >
           Learn More!
           <Icon as={FiChevronRight} />

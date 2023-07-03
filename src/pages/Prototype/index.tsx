@@ -10,9 +10,9 @@ const PrototypePage = () => {
         justifyContent={"center"}
         gap={8}
       >
-        <Heading textAlign={"center"}>
+        <Heading textAlign={"start"} color={"green.400"}>
           Prototype{" "}
-          <Text as={"span"} color={"green.400"}>
+          <Text as={"span"} color={"black"}>
             Pattern
           </Text>
         </Heading>

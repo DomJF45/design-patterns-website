@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import {
   IconButton,
   Box,
@@ -6,7 +6,6 @@ import {
   Flex,
   Icon,
   useColorModeValue,
-  Link,
   Drawer,
   DrawerContent,
   Text,
@@ -20,8 +19,12 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
+  Collapse,
+  StackProps,
+  Link,
 } from "@chakra-ui/react";
-import { FiHome, FiCompass, FiMenu } from "react-icons/fi";
+import { Link as RouterLink } from "react-router-dom";
+import { FiHome, FiCompass, FiMenu, FiChevronDown } from "react-icons/fi";
 import { TbBuildingFactory, TbBuildingFactory2 } from "react-icons/tb";
 import { PiFactoryLight } from "react-icons/pi";
 import { GiFactoryArm, GiPodiumWinner } from "react-icons/gi";
@@ -37,6 +40,7 @@ interface LinkItemProps {
   subNav?: LinkItemProps[];
   sublabel?: string;
 }
+
 const LinkItems: Array<LinkItemProps> = [
   { name: "Home", icon: FiHome, href: "/" },
   {
@@ -46,27 +50,27 @@ const LinkItems: Array<LinkItemProps> = [
       {
         name: "Factory",
         icon: TbBuildingFactory2,
-        href: "/factory",
+        href: "/creational/factory",
       },
       {
         name: "Abstract Factory",
         icon: PiFactoryLight,
-        href: "/abstract-factory",
+        href: "/creational/abstract-factory",
       },
       {
         name: "Builder",
         icon: GiFactoryArm,
-        href: "/builder",
+        href: "/creational/builder",
       },
       {
         name: "Prototype",
         icon: RiSketching,
-        href: "/prototype",
+        href: "/creational/prototype",
       },
       {
         name: "Singleton",
         icon: GiPodiumWinner,
-        href: "/singleton",
+        href: "/creational/singleton",
       },
     ],
   },
@@ -81,16 +85,35 @@ const LinkItems: Array<LinkItemProps> = [
   -------------------------------------
 */
 
-function NavBreadCrumb({ id }: { id: string }) {
+function NavBreadCrumb() {
+  const location = useLocation();
+  const [path, setPath] = useState<string[]>([]);
+
+  useEffect(() => {
+    setPath(location.pathname.split("/"));
+  }, [location]);
+
+  console.log("render");
+
   return (
     <Box my={4}>
-      <Breadcrumb separator={"/"}>
+      <Breadcrumb>
         <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          <BreadcrumbLink as={RouterLink} to={"/"}>
+            Home
+          </BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbItem>
-          <BreadcrumbLink href={`/${id}`}>{id}</BreadcrumbLink>
-        </BreadcrumbItem>
+        {path.slice(1, path.length).map((url, index) => (
+          <BreadcrumbItem key={index}>
+            <BreadcrumbLink
+              as={RouterLink}
+              isCurrentPage={index < path.length - 1}
+              to={index < path.length - 1 ? url : window.location.pathname}
+            >
+              {url}
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+        ))}
       </Breadcrumb>
     </Box>
   );
@@ -98,7 +121,6 @@ function NavBreadCrumb({ id }: { id: string }) {
 
 export default function SimpleSidebar({ children }: { children: ReactNode }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const location = useLocation();
   return (
     <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
       <SidebarContent
@@ -121,13 +143,7 @@ export default function SimpleSidebar({ children }: { children: ReactNode }) {
       {/* mobilenav */}
       <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
-        <NavBreadCrumb
-          id={
-            location.pathname
-              ? location.pathname.slice(1, location.pathname.length)
-              : ""
-          }
-        />
+        <NavBreadCrumb />
         {children}
       </Box>
     </Box>
@@ -149,19 +165,36 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       h="full"
       {...rest}
     >
-      <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="xl" fontWeight="bold" wordBreak={"break-word"}>
+      <Flex h="20" alignItems="center" px={5} justifyContent="space-between">
+        <Text
+          fontSize="xl"
+          fontWeight="bold"
+          wordBreak={"break-word"}
+          color={"green.500"}
+        >
           Design{" "}
-          <Text as={"span"} color={"green.500"}>
+          <Text as={"span"} color={"black"}>
             {"Patterns"}
           </Text>
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
-      {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon} link={link}>
-          {link.name}
-        </NavItem>
+      {LinkItems.map((link, index) => (
+        <Box key={index}>
+          <MobileNavItem
+            link={link}
+            display={{ base: "flex", md: "none" }}
+            onClose={onClose}
+          />
+          <NavItem
+            display={{ base: "none", md: "block" }}
+            key={link.name}
+            icon={link.icon}
+            link={link}
+          >
+            {link.name}
+          </NavItem>
+        </Box>
       ))}
     </Box>
   );
@@ -177,7 +210,8 @@ const NavItem = ({ icon, children, link, ...rest }: NavItemProps) => {
     <Popover trigger={"hover"} placement="right-end">
       <PopoverTrigger>
         <Link
-          href={link.href ? link.href : undefined}
+          as={RouterLink}
+          to={link.href ? link.href : ""}
           style={{ textDecoration: "none" }}
           _focus={{ boxShadow: "none" }}
         >
@@ -231,11 +265,10 @@ const NavItem = ({ icon, children, link, ...rest }: NavItemProps) => {
 const DesktopSubNav = ({ name, icon, href, sublabel }: LinkItemProps) => {
   return (
     <Link
-      href={href}
+      as={RouterLink}
+      to={href ? href : ""}
+      p={3}
       role={"group"}
-      display={"block"}
-      p={2}
-      rounded={"md"}
       _hover={{ bg: useColorModeValue("green.50", "gray.900") }}
     >
       <Stack direction={"row"} align={"center"}>
@@ -288,12 +321,79 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         icon={<FiMenu />}
       />
 
-      <Text fontSize="2xl" ml="8" fontWeight="bold">
+      <Text fontSize="2xl" ml="8" fontWeight="bold" color={"green.500"}>
         Design{" "}
-        <Text as={"span"} color={"green.500"}>
+        <Text as={"span"} color="black">
           {"Patterns"}
         </Text>
       </Text>
     </Flex>
+  );
+};
+
+interface MobileNavItemProps extends StackProps {
+  link: LinkItemProps;
+  onClose: () => void;
+}
+
+const MobileNavItem = ({ link, onClose, ...rest }: MobileNavItemProps) => {
+  const { isOpen, onToggle } = useDisclosure();
+
+  const { name, href, subNav } = link;
+
+  return (
+    <Stack spacing={4} onClick={subNav && onToggle} px={5} {...rest}>
+      <Flex
+        py={2}
+        as={RouterLink}
+        to={href ? href : ""}
+        justify={"space-between"}
+        align={"center"}
+        _hover={{
+          textDecoration: "none",
+        }}
+        onClick={href ? onClose : undefined}
+      >
+        <Text
+          fontWeight={600}
+          color={useColorModeValue("gray.600", "gray.200")}
+        >
+          {name}
+        </Text>
+        {subNav && (
+          <Icon
+            as={FiChevronDown}
+            transition={"all .25s ease-in-out"}
+            transform={isOpen ? "rotate(180deg)" : ""}
+            w={6}
+            h={6}
+          />
+        )}
+      </Flex>
+
+      <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
+        <Stack
+          mt={2}
+          pl={4}
+          borderLeft={1}
+          borderStyle={"solid"}
+          borderColor={useColorModeValue("gray.200", "gray.700")}
+          align={"start"}
+        >
+          {subNav &&
+            subNav.map((child) => (
+              <Link
+                as={RouterLink}
+                key={child.name}
+                py={2}
+                to={child.href}
+                onClick={onClose}
+              >
+                {child.name}
+              </Link>
+            ))}
+        </Stack>
+      </Collapse>
+    </Stack>
   );
 };

@@ -5,7 +5,7 @@ function Post({ children }: { children: React.ReactNode }) {
     <Box
       width={{ base: "95%", md: "500px", lg: "700px", xl: "900px" }}
       height={"100%"}
-      p={5}
+      py={5}
       display={"flex"}
       alignSelf={"center"}
     >

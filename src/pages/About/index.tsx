@@ -11,7 +11,7 @@ const AboutPage = () => {
         justifyContent={"center"}
         gap={8}
       >
-        <Heading textAlign={"center"}>
+        <Heading textAlign={"start"}>
           <Text as={"span"} color={"green.400"}>
             About
           </Text>
