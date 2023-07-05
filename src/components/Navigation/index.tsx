@@ -93,8 +93,6 @@ function NavBreadCrumb() {
     setPath(location.pathname.split("/"));
   }, [location]);
 
-  console.log("render");
-
   return (
     <Box my={4}>
       <Breadcrumb>
@@ -107,8 +105,8 @@ function NavBreadCrumb() {
           <BreadcrumbItem key={index}>
             <BreadcrumbLink
               as={RouterLink}
-              isCurrentPage={index < path.length - 1}
-              to={index < path.length - 1 ? url : window.location.pathname}
+              isCurrentPage={index === path.length - 1}
+              to={index < path.length - 2 ? url : window.location}
             >
               {url}
             </BreadcrumbLink>
