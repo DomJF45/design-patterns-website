@@ -163,6 +163,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       w={{ base: "full", md: 60 }}
       pos="fixed"
       h="full"
+      zIndex={20}
       {...rest}
     >
       <Flex h="20" alignItems="center" px={5} justifyContent="space-between">
@@ -191,6 +192,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
             key={link.name}
             icon={link.icon}
             link={link}
+            zIndex={20}
           >
             {link.name}
           </NavItem>
@@ -250,6 +252,7 @@ const NavItem = ({ icon, children, link, ...rest }: NavItemProps) => {
           p={4}
           rounded={"xl"}
           minW={"sm"}
+          zIndex={999}
         >
           <Stack>
             {link.subNav.map((child) => (

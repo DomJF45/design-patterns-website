@@ -34,10 +34,13 @@ const PatternBlock = ({
         showLineNumbers={showLineNumbers}
         startingLineNumber={startingLineNumber}
         theme={{ ...dracula, mode: "dark" }}
-        wrapLongLines
+        wrapLongLines={false}
         codeBlock
         copied={isCopied}
         onCopy={handleCopy}
+        customStyle={{
+          zIndex: 0,
+        }}
       />
     </>
   );

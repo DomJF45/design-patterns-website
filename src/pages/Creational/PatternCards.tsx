@@ -121,6 +121,7 @@ const Card = ({ heading, description, icon, href, img }: CardProps) => {
           colorScheme={"green"}
           size={"sm"}
           onClick={() => navigate(href)}
+          zIndex={0}
         >
           Learn More
         </Button>
