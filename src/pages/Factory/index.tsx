@@ -1,5 +1,7 @@
 import { Text, Flex, Heading, Image } from "@chakra-ui/react";
 import Post from "../../components/Post";
+import PatternBlock from "../../components/PatternCodeBlock";
+import { FactoryPatternJava } from "../../patternCode";
 
 const FactoryPage = () => {
   return (
@@ -24,6 +26,12 @@ const FactoryPage = () => {
           the subclasses. The pattern encapsulates the process of creating
           objects and decreases coupling via abstraction.
         </Text>
+        <PatternBlock
+          code={FactoryPatternJava}
+          language={"java"}
+          showLineNumbers={true}
+          startingLineNumber={1}
+        />
       </Flex>
     </Post>
   );
