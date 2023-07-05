@@ -8,6 +8,7 @@ import {
   Icon,
   useColorModeValue,
   SimpleGrid,
+  HStack,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { TbBuildingFactory2 } from "react-icons/tb";
@@ -15,6 +16,7 @@ import { PiFactoryLight } from "react-icons/pi";
 import { IconType } from "react-icons";
 import { GiFactoryArm, GiPodiumWinner } from "react-icons/gi";
 import { RiSketching } from "react-icons/ri";
+import { motion } from "framer-motion";
 
 interface CardProps {
   heading: string;
@@ -74,8 +76,10 @@ const Card = ({ heading, description, icon, href, img }: CardProps) => {
   const navigate = useNavigate();
   return (
     <Box
-      maxW={{ base: "full", md: "275px" }}
+      as={motion.div}
+      maxW={{ base: "full", md: "275px", lg: "500px" }}
       w={"full"}
+      h={"200px"}
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
@@ -85,43 +89,54 @@ const Card = ({ heading, description, icon, href, img }: CardProps) => {
       backgroundSize={"cover"}
       boxShadow={"md"}
       backdropFilter={""}
+      whileHover={{ y: "-10px" }}
+      transition={".2s ease-out"}
+      position={"relative"}
     >
-      <Stack align={"start"} spacing={2}>
-        <Flex
-          w={16}
-          h={16}
-          align={"center"}
-          justify={"center"}
-          color={"white"}
-          rounded={"full"}
-          bg={useColorModeValue("gray.100", "gray.700")}
-        >
-          {icon}
-        </Flex>
-        <Box mt={1} display={"flex"} flexDir={"column"}>
-          <Heading
-            size="md"
-            backgroundColor={"white"}
-            borderRadius={"12px"}
-            justifyContent={"center"}
-            display={"flex"}
-            px={5}
-            py={2}
-            alignSelf={"center"}
-            textAlign={"center"}
+      <Stack align={"start"} spacing={2} height={"100%"}>
+        <HStack>
+          <Flex
+            w={10}
+            h={10}
+            align={"center"}
+            justify={"center"}
+            color={"white"}
+            rounded={"full"}
+            boxShadow={"md"}
+            bg={useColorModeValue("gray.100", "gray.700")}
           >
-            {heading}
-          </Heading>
-          <Text mt={1} fontSize={"sm"}>
-            {description}
-          </Text>
-        </Box>
+            {icon}
+          </Flex>
+          <Box mt={1} display={"flex"} flexDir={"column"}>
+            <Heading
+              size="md"
+              color={"green.500"}
+              backgroundColor={"gray.100"}
+              borderRadius={"12px"}
+              justifyContent={"center"}
+              display={"flex"}
+              px={5}
+              py={2}
+              alignSelf={"center"}
+              textAlign={"center"}
+              boxShadow={"md"}
+            >
+              {heading}
+            </Heading>
+            <Text mt={1} fontSize={"sm"}>
+              {description}
+            </Text>
+          </Box>
+        </HStack>
         <Button
           variant={"solid"}
           colorScheme={"green"}
           size={"sm"}
           onClick={() => navigate(href)}
           zIndex={0}
+          position={"absolute"}
+          bottom={5}
+          right={5}
         >
           Learn More
         </Button>
@@ -138,7 +153,7 @@ const PatternCards = () => {
           <Card
             key={index}
             heading={pattern.name}
-            icon={<Icon as={pattern.icon} w={10} h={10} color={"green.300"} />}
+            icon={<Icon as={pattern.icon} w={5} h={5} color={"green.300"} />}
             description={""}
             href={pattern.href}
             img={pattern.img}
