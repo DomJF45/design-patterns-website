@@ -98,7 +98,10 @@ function NavBreadCrumb() {
       <Breadcrumb>
         <BreadcrumbItem>
           <BreadcrumbLink as={RouterLink} to={"/"}>
-            Home
+            <Flex alignItems={"center"}>
+              <Icon as={FiHome} mr={2} size={5} />
+              Home
+            </Flex>
           </BreadcrumbLink>
         </BreadcrumbItem>
         {path.slice(1, path.length).map((url, index) => (

@@ -1,5 +1,7 @@
 import { Flex, Heading, Image, Text } from "@chakra-ui/react";
 import Post from "../../components/Post";
+import PatternBlock from "../../components/PatternCodeBlock";
+import { AbstractFactoryJava } from "../../patternCode";
 
 const AbstractFactoryPage = () => {
   return (
@@ -16,9 +18,18 @@ const AbstractFactoryPage = () => {
             Factory
           </Text>
         </Heading>
-        <Image src="/factory-uml.png" width="700px" alignSelf={"center"} />
+        <Image src="/AbstractFactory.png" width="900px" alignSelf={"center"} />
         <Heading>About</Heading>
         <Text>coming soon...</Text>
+        <Flex direction="column">
+          <Text>Java</Text>
+          <PatternBlock
+            code={AbstractFactoryJava}
+            language={"java"}
+            showLineNumbers={true}
+            startingLineNumber={1}
+          />
+        </Flex>
       </Flex>
     </Post>
   );
