@@ -20,7 +20,12 @@ const AbstractFactoryPage = () => {
         </Heading>
         <Image src="/AbstractFactory.png" width="900px" alignSelf={"center"} />
         <Heading>About</Heading>
-        <Text>coming soon...</Text>
+        <Text>
+          The abstract factory pattern allows you to create families of related
+          products without specifying their concrete classes explicitly,
+          providing a way to create different variations of products while
+          ensuring they are compatible within their families.
+        </Text>
         <Flex direction="column">
           <Text>Java</Text>
           <PatternBlock
