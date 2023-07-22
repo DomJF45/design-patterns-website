@@ -38,9 +38,6 @@ const PatternBlock = ({
         codeBlock
         copied={isCopied}
         onCopy={handleCopy}
-        customStyle={{
-          zIndex: 0,
-        }}
       />
     </>
   );

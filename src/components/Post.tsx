@@ -1,6 +1,11 @@
-import { Box } from "@chakra-ui/react";
+import { Box, BoxProps } from "@chakra-ui/react";
+import { FunctionComponent } from "react";
 
-function Post({ children }: { children: React.ReactNode }) {
+interface PostProps extends BoxProps {
+  children: React.ReactNode;
+}
+
+const Post: FunctionComponent<PostProps> = ({ children, ...rest }) => {
   return (
     <Box
       width={{ base: "95%", md: "500px", lg: "700px", xl: "95%" }}
@@ -9,10 +14,11 @@ function Post({ children }: { children: React.ReactNode }) {
       py={5}
       display={"flex"}
       alignSelf={"center"}
+      {...rest}
     >
       {children}
     </Box>
   );
-}
+};
 
 export default Post;
