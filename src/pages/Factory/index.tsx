@@ -3,17 +3,14 @@ import {
   Flex,
   Heading,
   Image,
-  Button,
   ListItem,
   OrderedList,
-  Icon,
   UnorderedList,
 } from "@chakra-ui/react";
-import { Link as RouterLink } from "react-router-dom";
 import Post from "../../components/Post";
 import PatternBlock from "../../components/PatternCodeBlock";
 import { FactoryPatternJava, gundamFactoryJava } from "./factoryCode";
-import { FiArrowRight } from "react-icons/fi";
+import { NextButton, PrevButton } from "../../components/NextButton";
 
 const FactoryPage = () => {
   return (
@@ -30,6 +27,7 @@ const FactoryPage = () => {
           color={"green.400"}
           textDecoration={"underline"}
           textUnderlineOffset={2}
+          size={"2xl"}
         >
           Factory{" "}
           <Text as={"span"} color={"black"}>
@@ -79,7 +77,7 @@ const FactoryPage = () => {
           </ListItem>
           <ListItem>
             <Text as={"span"} fontWeight={"bold"}>
-              Code Reusability{" "}
+              Code Reusability:{" "}
             </Text>{" "}
             The Factory Pattern promotes code reusability by providing a single
             point of instantiation for related objects. This can help reduce
@@ -91,7 +89,7 @@ const FactoryPage = () => {
         <UnorderedList>
           <ListItem>
             <Text as={"span"} fontWeight={"bold"}>
-              Increased Complexity{" "}
+              Increased Complexity:{" "}
             </Text>{" "}
             The Factory Pattern introduces additional classes and abstraction,
             which can increase the complexity of the codebase, especially for
@@ -107,7 +105,7 @@ const FactoryPage = () => {
           </ListItem>
           <ListItem>
             <Text as={"span"} fontWeight={"bold"}>
-              Code Overhead{" "}
+              Code Overhead:{" "}
             </Text>{" "}
             Introducing a factory class means adding extra code to the project,
             which might not be justified for smaller projects or when there are
@@ -200,19 +198,10 @@ const FactoryPage = () => {
           . Click next to learn how the Abstract Factory works, and how this can
           solve our problem with the various grades of Gunpla.
         </Text>
-        <Button
-          variant={"outline"}
-          colorScheme={"green"}
-          as={RouterLink}
-          to={"/creational/abstract-factory"}
-          alignSelf={"end"}
-          width={"100px"}
-          justifyContent={"space-between"}
-          onClick={() => window.scrollTo({ top: 0 })}
-        >
-          Next
-          <Icon as={FiArrowRight} />
-        </Button>
+        <Flex width={"100%"} justifyContent={"space-between"}>
+          <PrevButton link="/creational" />
+          <NextButton link="/creational/abstract-factory" />
+        </Flex>
       </Flex>
     </Post>
   );
