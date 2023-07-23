@@ -71,7 +71,7 @@ const FactoryPage = () => {
           </ListItem>
           <ListItem>
             <Text as={"span"} fontWeight={"bold"}>
-              Centralized Object Creation{" "}
+              Centralized Object Creation:{" "}
             </Text>{" "}
             By centralizing the object creation process in the factory, you can
             manage complex object creation logic, such as choosing a class based
