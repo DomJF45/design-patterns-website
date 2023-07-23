@@ -8,7 +8,7 @@ interface PostProps extends BoxProps {
 const Post: FunctionComponent<PostProps> = ({ children, ...rest }) => {
   return (
     <Box
-      width={{ base: "95%", md: "500px", lg: "700px", xl: "95%" }}
+      width={{ base: "95%", md: "500px", lg: "900px" }}
       maxW={"1100px"}
       height={"100%"}
       py={5}
