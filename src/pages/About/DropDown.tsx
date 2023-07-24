@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Classification } from "../../data/classification";
 import { FunctionComponent } from "react";
 import { Variants, motion } from "framer-motion";
-import { Button, Icon } from "@chakra-ui/react";
+import { Button, Icon, Flex } from "@chakra-ui/react";
 import { FiChevronDown } from "react-icons/fi";
 
 interface DropDownProps {
@@ -31,7 +31,8 @@ const DropDown: FunctionComponent<DropDownProps> = ({
       animate={isOpen ? "open" : "closed"}
       style={{
         height: "100%",
-        width: "300px",
+        width: "95%",
+        marginBottom: 25,
       }}
     >
       <Button
@@ -86,26 +87,51 @@ const DropDown: FunctionComponent<DropDownProps> = ({
           paddingBlock: 10,
         }}
       >
-        {patternGroup.map((pattern, index) => (
-          <motion.li
-            variants={itemVariants}
-            key={index}
-            style={{
-              listStyle: "none",
-              marginInline: 20,
-              padding: 10,
-              border: "1px solid #ffffff87",
-              borderRadius: "5px",
-              height: "100%",
-              backgroundColor: "whitesmoke",
-              boxShadow: "1px 1px 2px #38A169",
-            }}
-          >
-            {pattern.name}
-          </motion.li>
-        ))}
+        <Flex flexWrap={"wrap"} rowGap={3}>
+          {patternGroup.map((pattern, index) => (
+            <PatternListItem
+              key={index}
+              pattern={pattern.name}
+              index={index}
+              itemVariants={itemVariants}
+            />
+          ))}
+        </Flex>
       </motion.ul>
     </motion.nav>
+  );
+};
+
+interface PatternListProps {
+  index: number;
+  itemVariants: Variants;
+  pattern: string;
+}
+
+const PatternListItem: FunctionComponent<PatternListProps> = ({
+  index,
+  itemVariants,
+  pattern,
+}) => {
+  return (
+    <motion.li
+      key={index}
+      variants={itemVariants}
+      style={{
+        listStyle: "none",
+        marginInline: 20,
+        padding: 8,
+        border: "1px solid #ffffff87",
+        borderRadius: "5px",
+        height: "fit-content",
+        backgroundColor: "whitesmoke",
+        boxShadow: "1px 1px 2px #38A169",
+        width: "fit-content",
+        fontSize: ".8rem",
+      }}
+    >
+      {pattern}
+    </motion.li>
   );
 };
 

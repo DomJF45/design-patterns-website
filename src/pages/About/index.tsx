@@ -88,7 +88,7 @@ const AboutPage = () => {
           </HStack>
         </SimpleGrid>
         <Flex alignSelf={"center"} width={"100%"} px={10} flexDir={"column"}>
-          <SimpleGrid columns={{ base: 1, md: 3 }} gap={{ base: 3, md: 0 }}>
+          <SimpleGrid columns={{ base: 1, xl: 3 }} gap={{ base: 3, md: 0 }}>
             {Object.entries(patterns).map(([key, value], index) => (
               <DropDown groupName={key} patternGroup={value} key={index} />
             ))}
