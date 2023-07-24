@@ -33,6 +33,8 @@ const DropDown: FunctionComponent<DropDownProps> = ({
         height: "100%",
         width: "95%",
         marginBottom: 25,
+        display: "flex",
+        flexWrap: "wrap",
       }}
     >
       <Button

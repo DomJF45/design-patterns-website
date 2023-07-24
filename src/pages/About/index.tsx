@@ -87,12 +87,18 @@ const AboutPage = () => {
             </Box>
           </HStack>
         </SimpleGrid>
-        <Flex alignSelf={"center"} width={"100%"} px={10} flexDir={"column"}>
-          <SimpleGrid columns={{ base: 1, xl: 3 }} gap={{ base: 3, md: 0 }}>
-            {Object.entries(patterns).map(([key, value], index) => (
-              <DropDown groupName={key} patternGroup={value} key={index} />
-            ))}
-          </SimpleGrid>
+        <Flex
+          alignSelf={{ base: "center", md: "end" }}
+          flexDir={{ base: "column" }}
+          width={{ base: "80%", md: "40%" }}
+        >
+          <Flex flexWrap={"wrap"} flexDir={{ base: "column", md: "row" }}>
+            <>
+              {Object.entries(patterns).map(([key, value], index) => (
+                <DropDown groupName={key} patternGroup={value} key={index} />
+              ))}
+            </>
+          </Flex>
         </Flex>
       </Flex>
     </Post>
