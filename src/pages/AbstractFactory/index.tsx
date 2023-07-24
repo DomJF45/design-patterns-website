@@ -10,10 +10,61 @@ import Post from "../../components/Post";
 import PatternBlock from "../../components/PatternCodeBlock";
 import { AbstractFactoryJava, abstractGundamFactory } from "./patternCode";
 import { PrevButton, NextButton } from "../../components/NextButton";
+import Author from "../../components/Author";
+import { NavItem } from "../../data/interfaces";
+import { useRef } from "react";
 
 const AbstractFactoryPage = () => {
+  const overview1 = useRef(null);
+  const uml1 = useRef(null);
+  const code1 = useRef(null);
+  const pros = useRef(null);
+  const cons = useRef(null);
+  const example = useRef(null);
+  const exampleUML = useRef(null);
+  const exampleCode = useRef(null);
+
+  const navList: NavItem[] = [
+    {
+      name: "Overview",
+      ref: overview1,
+      subNav: [
+        {
+          name: "UML",
+          ref: uml1,
+        },
+        {
+          name: "Code",
+          ref: code1,
+        },
+      ],
+    },
+    {
+      name: "Pros",
+      ref: pros,
+    },
+    {
+      name: "Cons",
+      ref: cons,
+    },
+    {
+      name: "Example",
+      ref: example,
+      subNav: [
+        {
+          name: "Example UML",
+          ref: exampleUML,
+        },
+        {
+          name: "Example Code",
+          ref: exampleCode,
+        },
+      ],
+    },
+  ];
+
   return (
-    <Post>
+    <Post navList={navList}>
       <Flex
         direction={"column"}
         width={"100%"}
@@ -31,7 +82,7 @@ const AbstractFactoryPage = () => {
             Factory
           </Text>
         </Heading>
-        <Heading>Overview</Heading>
+        <Heading ref={overview1}>Overview</Heading>
         <Text>
           The abstract factory pattern allows you to create families of related
           products without specifying their concrete classes explicitly,
@@ -47,9 +98,11 @@ const AbstractFactoryPage = () => {
           concrete factory then creates the specific product from its family and
           returns it to the client.
         </Text>
-        <Heading size={"lg"}>UML</Heading>
+        <Heading size={"lg"} ref={uml1}>
+          UML
+        </Heading>
         <Image src="/AbstractFactory.png" width="900px" alignSelf={"center"} />
-        <Flex direction="column">
+        <Flex direction="column" ref={code1}>
           <Text>Java</Text>
           <PatternBlock
             code={AbstractFactoryJava}
@@ -58,7 +111,9 @@ const AbstractFactoryPage = () => {
             startingLineNumber={1}
           />
         </Flex>
-        <Heading size={"lg"}>Pros:</Heading>
+        <Heading size={"lg"} ref={pros}>
+          Pros:
+        </Heading>
         <UnorderedList>
           <ListItem>
             <Text as={"span"} fontWeight={"bold"}>
@@ -88,7 +143,9 @@ const AbstractFactoryPage = () => {
             making the system more adaptable to changes and future extensions.
           </ListItem>
         </UnorderedList>
-        <Heading size={"lg"}>Cons:</Heading>
+        <Heading size={"lg"} ref={cons}>
+          Cons:
+        </Heading>
         <UnorderedList>
           <ListItem>
             <Text as={"span"} fontWeight={"bold"}>
@@ -119,7 +176,7 @@ const AbstractFactoryPage = () => {
             through the system.
           </ListItem>
         </UnorderedList>
-        <Heading>Abstract Gunpla Factory</Heading>
+        <Heading ref={example}>Abstract Gunpla Factory</Heading>
         <Image
           src={"/abstract-gunpla.gif"}
           width={"500px"}
@@ -130,7 +187,9 @@ const AbstractFactoryPage = () => {
           how this encapsulation and creation of similar objects with varying
           suites applies to the different grades of Gunpla models.
         </Text>
-        <Heading size={"lg"}>UML</Heading>
+        <Heading size={"lg"} ref={exampleUML}>
+          UML
+        </Heading>
         <Image
           src="/abstract-gunpla-factory.png"
           width="900px"
@@ -145,7 +204,9 @@ const AbstractFactoryPage = () => {
           grade. Because there are three types of one Gunpla organized by grade,
           this makes a perfect use case for the abstract factory.
         </Text>
-        <Heading size={"lg"}>Code</Heading>
+        <Heading size={"lg"} ref={exampleCode}>
+          Code
+        </Heading>
         <Flex direction="column">
           <Text>Java</Text>
           <PatternBlock
@@ -164,6 +225,7 @@ const AbstractFactoryPage = () => {
           </Text>{" "}
           Pattern.
         </Text>
+        <Author contentAuthor="Dominick Founds" />
         <Flex width={"100%"} justifyContent={"space-between"}>
           <PrevButton link="/creational/factory" />
           <NextButton link="/creational/builder" />

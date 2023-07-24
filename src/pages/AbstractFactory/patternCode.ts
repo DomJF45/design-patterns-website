@@ -206,3 +206,103 @@ public class Main {
         pgRX78.assemble();
     }
 }`;
+
+export const examplePrototype = `// Diagnoser interface
+interface Diagnoser extends Cloneable {
+    Diagnoser clone();
+    String getAge();
+    String getSex();
+    String getEthnicity();
+}
+
+// DiagnoserNetwork class implementing Diagnoser interface
+class DiagnoserNetwork implements Diagnoser {
+    private double[] weights;
+    private double[] biases;
+    private String architecture;
+    private String age;
+    private String sex;
+    private String ethnicity;
+
+    // Constructor
+    public DiagnoserNetwork(double[] weights, double[] biases, String architecture, String age, String sex, String ethnicity) {
+        this.weights = weights;
+        this.biases = biases;
+        this.architecture = architecture;
+        this.age = age;
+        this.sex = sex;
+        this.ethnicity = ethnicity;
+    }
+
+    // Implementing clone method to create a deep copy of DiagnoserNetwork
+    @Override
+    public Diagnoser clone() {
+        double[] clonedWeights = this.weights.clone();
+        double[] clonedBiases = this.biases.clone();
+        return new DiagnoserNetwork(clonedWeights, clonedBiases, this.architecture, this.age, this.sex, this.ethnicity);
+    }
+
+    @Override
+    public String getAge() {
+        return age;
+    }
+
+    @Override
+    public String getSex() {
+        return sex;
+    }
+
+    @Override
+    public String getEthnicity() {
+        return ethnicity;
+    }
+}
+
+// NetworkRegistry class acting as Prototype Registry
+class NetworkRegistry {
+    private Map<String, Diagnoser> networks = new HashMap<>();
+
+    // Method to add a Diagnoser to the registry
+    public void addEntry(String id, Diagnoser network) {
+        networks.put(id, network);
+    }
+
+    // Method to get Diagnoser by ID from the registry
+    public Diagnoser getByID(String id) {
+        Diagnoser network = networks.get(id);
+        if (network != null) {
+            return network.clone();
+        }
+        return null;
+    }
+
+    // Method to get Diagnoser by age from the registry
+    public Diagnoser getByAge(String age) {
+        for (Diagnoser network : networks.values()) {
+            if (network.getAge().equals(age)) {
+                return network.clone();
+            }
+        }
+        return null;
+    }
+
+    // Method to get Diagnoser by sex from the registry
+    public Diagnoser getBySex(String sex) {
+        for (Diagnoser network : networks.values()) {
+            if (network.getSex().equals(sex)) {
+                return network.clone();
+            }
+        }
+        return null;
+    }
+
+    // Method to get Diagnoser by ethnicity from the registry
+    public Diagnoser getByEthnicity(String ethnicity) {
+        for (Diagnoser network : networks.values()) {
+            if (network.getEthnicity().equals(ethnicity)) {
+                return network.clone();
+            }
+        }
+        return null;
+    }
+}`;

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { CopyBlock, dracula } from "react-code-blocks";
 import { useToast } from "@chakra-ui/react";
+import Disclaimer from "./Disclaimer";
 
 const PatternBlock = ({
   code,
@@ -39,6 +40,7 @@ const PatternBlock = ({
         copied={isCopied}
         onCopy={handleCopy}
       />
+      <Disclaimer />
     </>
   );
 };

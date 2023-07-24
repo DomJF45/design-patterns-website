@@ -14,7 +14,7 @@ import DropDown from "./DropDown";
 
 const AboutPage = () => {
   return (
-    <Post>
+    <Post width={"100%"}>
       {/* wrap in post component */}
       <Flex
         direction={"column"}

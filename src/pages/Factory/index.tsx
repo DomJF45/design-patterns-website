@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import {
   Text,
   Flex,
@@ -11,10 +12,70 @@ import Post from "../../components/Post";
 import PatternBlock from "../../components/PatternCodeBlock";
 import { FactoryPatternJava, gundamFactoryJava } from "./factoryCode";
 import { NextButton, PrevButton } from "../../components/NextButton";
+import Author from "../../components/Author";
+import { NavItem } from "../../data/interfaces";
 
 const FactoryPage = () => {
+  const overview1 = useRef(null);
+  const uml1 = useRef(null);
+  const code1 = useRef(null);
+  const pros = useRef(null);
+  const cons = useRef(null);
+  const example = useRef(null);
+  const gunpla = useRef(null);
+  const gunplaExample = useRef(null);
+  const exampleUML = useRef(null);
+  const exampleCode = useRef(null);
+
+  const navList: NavItem[] = [
+    {
+      name: "Overview",
+      ref: overview1,
+      subNav: [
+        {
+          name: "UML",
+          ref: uml1,
+        },
+        {
+          name: "Code",
+          ref: code1,
+        },
+      ],
+    },
+    {
+      name: "Pros",
+      ref: pros,
+    },
+    {
+      name: "Cons",
+      ref: cons,
+    },
+    {
+      name: "Example",
+      ref: example,
+      subNav: [
+        {
+          name: "Gunpla",
+          ref: gunpla,
+        },
+        {
+          name: "Gunpla Example",
+          ref: gunplaExample,
+        },
+        {
+          name: "Example UML",
+          ref: exampleUML,
+        },
+        {
+          name: "Example Code",
+          ref: exampleCode,
+        },
+      ],
+    },
+  ];
+
   return (
-    <Post>
+    <Post navList={navList}>
       {/* wrap in post component */}
       <Flex
         direction={"column"}
@@ -34,7 +95,7 @@ const FactoryPage = () => {
             Pattern
           </Text>
         </Heading>
-        <Heading>Overview</Heading>
+        <Heading ref={overview1}>Overview</Heading>
         <Text>
           The Factory pattern provides a great way to build objects depending on
           the subclasses. The pattern encapsulates the process of creating
@@ -44,9 +105,13 @@ const FactoryPage = () => {
           client code interacts with a factory method or an abstract factory
           interface, which handles the object creation.
         </Text>
-        <Heading size={"lg"}>UML</Heading>
+        <Heading size={"lg"} ref={uml1}>
+          UML
+        </Heading>
         <Image src="/factory-uml.png" width="500px" alignSelf={"center"} />
-        <Heading size="lg">Code</Heading>
+        <Heading size="lg" ref={code1}>
+          Code
+        </Heading>
         <Flex direction={"column"}>
           <Text>Java</Text>
           <PatternBlock
@@ -56,7 +121,9 @@ const FactoryPage = () => {
             startingLineNumber={1}
           />
         </Flex>
-        <Heading size={"lg"}>Pros:</Heading>
+        <Heading size={"lg"} ref={pros}>
+          Pros:
+        </Heading>
         <UnorderedList>
           <ListItem>
             <Text as={"span"} fontWeight={"bold"}>
@@ -85,7 +152,9 @@ const FactoryPage = () => {
             the application.
           </ListItem>
         </UnorderedList>
-        <Heading size="lg">Cons: </Heading>
+        <Heading size="lg" ref={cons}>
+          Cons:{" "}
+        </Heading>
         <UnorderedList>
           <ListItem>
             <Text as={"span"} fontWeight={"bold"}>
@@ -112,7 +181,7 @@ const FactoryPage = () => {
             only a few product classes.
           </ListItem>
         </UnorderedList>
-        <Heading>Gundam</Heading>
+        <Heading ref={example}>Gundam</Heading>
         <Image
           src={"/gundam-pilot-gif.gif"}
           width={"400px"}
@@ -123,7 +192,7 @@ const FactoryPage = () => {
             "Gundam refers to a popular Japanese media franchise that originated in 1979 with the release of the original Mobile Suit Gundam anime series. Created by Yoshiyuki Tomino and produced by Sunrise, the Gundam franchise has since become a cultural phenomenon, spanning various anime series, movies, manga, video games, and model kits. At its core, Gundam revolves around the concept of giant humanoid robots known as Mobile Suits. These Mobile Suits are piloted by humans and are often used in military conflicts. What sets Gundam apart from other mecha anime is its focus on realistic physics, complex characters, and political themes. The franchise has gained a massive and dedicated fanbase worldwide."
           }
         </Text>
-        <Heading>Gunpla</Heading>
+        <Heading ref={gunpla}>Gunpla</Heading>
         <Image src={"/gunpla-rx78.png"} alignSelf={"center"} width={"300px"} />
         <Text as={"div"}>
           {
@@ -156,14 +225,16 @@ const FactoryPage = () => {
             </ListItem>
           </OrderedList>
         </Text>
-        <Heading>Gunpla Factory</Heading>
+        <Heading ref={gunplaExample}>Gunpla Factory</Heading>
         <Text>
           {
             "Because of the various kinds and suites of Gunpla models available, they make for a great example for Factory Design Patterns. Let's take a look at the following UML."
           }
         </Text>
 
-        <Heading size={"lg"}>UML</Heading>
+        <Heading size={"lg"} ref={exampleUML}>
+          UML
+        </Heading>
         <Image src="/gundam-factory.png" width="500px" alignSelf={"center"} />
         <Text>
           Here, we can see a common Gunpla interface that three different Gunpla
@@ -172,7 +243,9 @@ const FactoryPage = () => {
           type specified by the client. Below is code implemented in Java to
           achieve this.
         </Text>
-        <Heading size={"lg"}>Code</Heading>
+        <Heading size={"lg"} ref={exampleCode}>
+          Code
+        </Heading>
         <Flex direction={"column"}>
           <Text>Java</Text>
           <PatternBlock
@@ -198,6 +271,7 @@ const FactoryPage = () => {
           . Click next to learn how the Abstract Factory works, and how this can
           solve our problem with the various grades of Gunpla.
         </Text>
+        <Author contentAuthor="Dominick Founds" />
         <Flex width={"100%"} justifyContent={"space-between"}>
           <PrevButton link="/creational" />
           <NextButton link="/creational/abstract-factory" />
