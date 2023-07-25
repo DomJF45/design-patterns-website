@@ -5,6 +5,7 @@ import { SingletonJava, EagerSingletonJava, GunplaSingletonJava } from "./patter
 import { PrevButton } from "../../components/NextButton";
 import { useRef } from "react";
 import { NavItem } from "../../data/interfaces";
+import Author from "../../components/Author";
 
 const SingletonPage = () => {
   const overview1 = useRef(null);
@@ -150,6 +151,7 @@ const SingletonPage = () => {
             startingLineNumber={1}
           />
         </Flex>
+        <Author contentAuthor="Jeffrey Ganulin" />
         <Flex width={"100%"} justifyContent={"space-between"}>
           <PrevButton link="/creational/prototype" />
         </Flex>
