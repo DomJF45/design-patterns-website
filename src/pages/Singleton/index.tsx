@@ -114,7 +114,7 @@ const SingletonPage = () => {
             <strong>Multi-threaded performance concerns</strong> - While the Singleton pattern is generally thread-safe a problem can occur if too many threads are attempting to access a lazily-instantiated Singleton instance at the same time. This can cause a bottleneck in the program, as each thread will have to wait for the previous one to finish before it can access the instance. In some cases, improper management of a Singleton across multiple threads may even result in multiple instances of the Singleton being created, which defeats the purpose of the pattern. Both of these issues can be avoided by using eager initialization, which creates the single Singleton instance when the class is loaded into memory rather than when it is first needed. An example of eager initialization is shown below.
           </li>
         </ul>
-        <Heading ref={code1}>Code (Lazy Instatiation)</Heading>
+        <Heading ref={code1}>Code (Lazy Initialization)</Heading>
         <Flex direction="column">
           <Text>Java</Text>
           <PatternBlock
@@ -124,7 +124,7 @@ const SingletonPage = () => {
             startingLineNumber={1}
           />
         </Flex>
-        <Heading ref={code2}>Code (Eager Instatiation)</Heading>
+        <Heading ref={code2}>Code (Eager Initialization)</Heading>
         <Flex direction="column">
           <Text>Java</Text>
           <PatternBlock
