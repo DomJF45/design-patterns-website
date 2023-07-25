@@ -78,11 +78,12 @@ const AboutPage = () => {
               fontSize={{ md: "xl" }}
             >
               <Text as={"span"} fontWeight={"bold"} color={"green.500"}>
-                Classification
+                Classification and Scope
               </Text>{" "}
               <Text>
-                Each pattern belongs to a certain classification of patterns
-                that dictate their applicability
+                Each pattern belongs to a certain classification of patterns that dictate their applicability.
+                The different types of classifications of design patterns include Structural, Creational, and Behavioral.
+                Within each of these categories, there are different patterns that apply to classes and objects.
               </Text>
             </Box>
           </HStack>

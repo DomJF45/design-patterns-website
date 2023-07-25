@@ -25,7 +25,7 @@ const HomePage = () => {
         <Heading textAlign={"center"} size={"2xl"} color={"green.500"}>
           Design{" "}
           <Text as={"span"} color={"black"}>
-            Patterns!
+            Patterns
           </Text>
         </Heading>
         <Image
@@ -44,10 +44,12 @@ const HomePage = () => {
           p={3}
           boxShadow={"sm"}
         >
+          <Heading style={{ textAlign: "center" }}>
+            Welcome to the world of design patterns!
+          </Heading>
           <Text textAlign={"center"}>
-            Welcome to the world of design patterns! Here, we will teach you
-            in-depth examples of design patterns. For the time being, we will
-            focus on creational patterns!
+            Design patterns are a way to solve common problems in object-oriented software development. They are tried and true solutions to certain design use cases that enable us to write more easily understandable and maintainable code. There are a few categories of design patterns, including creational, behavioral, and structural. Within each category, there are many different patterns, with some pertaining to classes and others pertaining to objects.
+            Here, we will teach you in-depth examples of these design patterns. For the time being, we will focus on creational patterns!
           </Text>
         </Box>
         <Button
