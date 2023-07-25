@@ -126,7 +126,7 @@ const PrototypePage = () => {
         <UnorderedList>
           <ListItem>No Coupling to Concrete Classes</ListItem>
           <ListItem>
-            Iitialization code can be simplified down to calling the clone
+            Initialization and configuration code can be simplified to just calling the clone
             function
           </ListItem>
           <ListItem>Quicker and easier creation of complex objects</ListItem>
@@ -136,7 +136,7 @@ const PrototypePage = () => {
           Cons:
         </Heading>
         <UnorderedList>
-          <ListItem>Not all complex objects can be cloned easy</ListItem>
+          <ListItem>Not all complex objects can be cloned easily</ListItem>
           <ListItem>
             Circular references and logic referring to other objects might
             require extra careful handling
@@ -167,14 +167,12 @@ const PrototypePage = () => {
         <Text>
           Here’s the amazing section where we get to discuss a fun, imagination
           enriching, completely original scenario where this particular design
-          pattern makes our lives a whole lot easier. I (the writer of this page
-          at least) find artificial intelligence to be really amazing and
-          interesting, and I figured that there had to be a really good use for
-          the Prototyping design pattern in a machine learning problem space. It
-          didn’t take long for me to realize that not only was there a realistic
-          application already built in to how neural networks work (explanation
+          pattern makes our lives a whole lot easier. Artificial intelligence is 
+          an amazing and interesting field with a wide variety of applications. It
+          didn’t take long for the author to realize that not only was there a realistic
+          application already built into how neural networks function (explanation
           coming soon), but there’s also a really fascinating and 100% original
-          application that totally doesn’t relate to research I’ve previously
+          application that just might relate to research I’ve previously
           done and will shamelessly promote{" "}
           <Link
             href="https://ieeexplore.ieee.org/abstract/document/9401810/"
@@ -200,9 +198,9 @@ const PrototypePage = () => {
           the result is wrong, an algorithm tweaks the activation functions,
           biases, and weights of the network and you try again. Over the course
           of thousands or millions of attempts, the networks can get pretty good
-          at whatever task they’re geared towards. You can see a handy
-          visualization of how convolutional networks work to convert an image
-          of an object into an accurate classification:{" "}
+          at whatever task they’ve been assigned. You can see a handy
+          visualization of how convolutional networks work to convert images into
+           accurate object classifications:{" "}
           <Link
             href="https://poloclub.github.io/cnn-explainer/"
             target="_blank"
@@ -225,10 +223,10 @@ const PrototypePage = () => {
           training before they’re any good at the task they’ve been assigned.
           This compounds with network size and complexity, which can mean that
           you either need some serious compute power on the scale of Google or
-          several year’s worth of patience to train the increasingly bigger and
-          better models that have become more popular. One of the ways around
+          several year’s worth of patience to train the exponentially bigger models 
+          that have become more popular. One of the ways around
           this is transfer learning, where you can copy the weights and biases
-          of an already trained network and do the final bit of training to fine
+          of an already trained network and do a bit more training on new data to fine
           tune it to work on your particular problem. See what I mean about a
           built-in use for prototype duplication?
         </Text>
@@ -247,31 +245,29 @@ const PrototypePage = () => {
           <br />
           It was decided that a network should be trained and made available to
           each patient based on their age, sex, and ethnicity. This makes a lot
-          of sense because normal body function varies wildly depending on these
+          of sense because normal body function can vary wildly based on these
           factors and a one size fits all diagnosis network could make some
-          severe errors and we definitely don’t want that on our insurance!
+          severe errors. We definitely don’t want that on our insurance!
           <br />
           <br />
-          So, the data scientists on staff took a pretty good diagnosis network
+          So, the data scientists on staff took a pretty good generic diagnosis network
           and configured it so that the patient’s age, sex, and ethnicity were
           inputs. They trained the network to recognize these different inputs
-          and change its behavior to give a better diagnosis, but this brings up
+          and change its behavior to give a better diagnosis, which brings up
           an important issue. All of the information used to configure the
           networks is personal health information and directly protected under
-          law, so we made sure that everything in the network classes was
-          private or unreachable.
+          law, so we need to make sure that none of it can be easily accessed 
+          outside of the clone method!
           <br />
           <br />
-          We always want to keep improving the service for our patients, so the
+          e always want to keep improving the service for our patients, so the
           techs need to periodically get copies of the networks to do more
           testing and training. Just like that, our hospital has a serious need
           to be able to easily clone configured diagnosis networks while
-          allowing for the protection of client data. Not to mention that we
-          should be able to provide a configured network for any patients that
-          walk in the door. Here’s where the Prototype design pattern really
-          shines! We’ll be implementing a network registry and associated search
-          functions alongside the prototype interface to ensure that our
-          patients get the best service we can provide!
+          allowing for the protection of client data. Here’s where the Prototype design 
+          pattern really shines! We’ll be implementing a network registry and associated search
+          functions alongside the prototype interface to ensure that our data scientists can easily 
+          access configured networks and our patients get the best service as soon as they walk through the door!
         </Text>
         <Heading size={"lg"} ref={exampleUML}>
           Example UML
